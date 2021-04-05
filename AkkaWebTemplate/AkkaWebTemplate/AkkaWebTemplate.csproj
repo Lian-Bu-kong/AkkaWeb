@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ExternalSys\ExternalSys.csproj" />
+    <ProjectReference Include="..\LogSender\LogSender.csproj" />
+  </ItemGroup>
+
 </Project>
