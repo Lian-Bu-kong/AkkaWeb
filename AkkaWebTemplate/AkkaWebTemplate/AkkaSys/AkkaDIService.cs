@@ -2,6 +2,7 @@
 using Akka.DI.Extensions.DependencyInjection;
 using Akka.Event;
 using AkkaSysBase;
+using ExternalSys.Event.Tracking;
 using ExternalSys.PLC;
 using ExternalSys.PLC.Actor;
 using LogSender;
@@ -54,7 +55,8 @@ namespace AkkaWebTemplate.AkkaSys
 
             _service.AddScoped(p =>
             {
-                return new PlcRcvEdit(GetLog<PlcRcvEdit>(p, "PlcRcvEditLog"));
+                var trkMapEventPuhser = p.GetService<ITrackingEventPusher>();
+                return new PlcRcvEdit(GetLog<PlcRcvEdit>(p, "PlcRcvEditLog") , trkMapEventPuhser);
             });
 
             _service.AddScoped(p =>

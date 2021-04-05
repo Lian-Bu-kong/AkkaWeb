@@ -1,4 +1,6 @@
 using AkkaWebTemplate.AkkaSys;
+using AkkaWebTemplate.Hubs;
+using ExternalSys.Event.Tracking;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +24,9 @@ namespace AkkaWebTemplate
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<ITrackingEventPusher, TrackingEventPusher>();
+            // SignalIR
+            services.AddSignalR();
 
             new AkkaDIService(services, _configuration).Inject();
 
@@ -49,6 +54,8 @@ namespace AkkaWebTemplate
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapHub<TrackingRequest>("/trackHub");
             });
 
 
