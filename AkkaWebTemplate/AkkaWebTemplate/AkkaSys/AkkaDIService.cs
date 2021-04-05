@@ -26,7 +26,7 @@ namespace AkkaWebTemplate.AkkaSys
 
         public void Inject()
         {
-            // Register System
+            // Register Akka System
             _service.AddSingleton<ISysAkkaManager>(provider =>
             {
                 var sysName = _configuration["AkkaConfigure:Name"];
@@ -37,7 +37,7 @@ namespace AkkaWebTemplate.AkkaSys
                 return new SysAkkaManager(actSystem);
             });
 
-            #region Register Akka PLC Inject
+            #region Register Akka PLC 
 
             _service.AddScoped(p =>
             {
@@ -65,19 +65,19 @@ namespace AkkaWebTemplate.AkkaSys
 
             _service.AddScoped(p =>
             {
-                return new PlcSndEdit(GetLog<PlcSndEdit>(p, "PlcSndEditLog"));
+                var akkaManager = p.GetService<ISysAkkaManager>();
+                return new PlcSndEdit(akkaManager,GetLog<PlcSndEdit>(p, "PlcSndEditLog"));
             });
 
             #endregion
 
-            // 註冊Server應用場景
+            // Register Akka Server Engin
             _service.AddScoped(provider =>
             {
                 var akkaManager = provider.GetService<ISysAkkaManager>();
                 return new AkkaServerEngine(akkaManager);
             });
         }
-
 
         private ILog GetLog<T>(IServiceProvider context, string nlogName)
         {
