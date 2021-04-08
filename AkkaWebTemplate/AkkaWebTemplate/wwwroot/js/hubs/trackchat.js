@@ -1,5 +1,5 @@
 ﻿// 建立Connection
-var connection = new signalR.HubConnectionBuilder().withUrl("/trackHub").build();
+var connection = new signalR.HubConnectionBuilder().withUrl("/trackchannel").build();
 
 // Connect BackEnd and FrontEnd Init
 connection.start().then(function () {

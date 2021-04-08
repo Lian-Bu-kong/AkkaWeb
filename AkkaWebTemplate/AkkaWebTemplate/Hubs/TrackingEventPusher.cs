@@ -9,9 +9,9 @@ namespace AkkaWebTemplate.Hubs
 {
     public class TrackingEventPusher : ITrackingEventPusher
     {
-        private readonly IHubContext<TrackingRequest> _trackHubContext;
+        private readonly IHubContext<TrackingChannel> _trackHubContext;
 
-        public TrackingEventPusher(IHubContext<TrackingRequest> trackContext)
+        public TrackingEventPusher(IHubContext<TrackingChannel> trackContext)
         {
             _trackHubContext = trackContext;
         }

@@ -2,7 +2,7 @@
 var _btn_reqtrack;
 
 // 建立Connection
-var connection = new signalR.HubConnectionBuilder().withUrl("/trackHub").build();
+var connection = new signalR.HubConnectionBuilder().withUrl("/trackchannel").build();
 
 
 //  取得 dom 上所需元素

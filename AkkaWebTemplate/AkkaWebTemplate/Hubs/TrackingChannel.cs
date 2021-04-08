@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace AkkaWebTemplate.Hubs
 {
-    public class TrackingRequest : Hub
+    public class TrackingChannel : Hub
     {
         private readonly ISysAkkaManager _akkaManager;
 
-        public TrackingRequest(ISysAkkaManager akkaManager)
+        public TrackingChannel(ISysAkkaManager akkaManager)
         {
             _akkaManager = akkaManager;
         }

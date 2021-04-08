@@ -55,7 +55,7 @@ namespace AkkaWebTemplate
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapHub<TrackingRequest>("/trackHub");
+                endpoints.MapHub<TrackingChannel>("/trackchannel");
             });
 
 
